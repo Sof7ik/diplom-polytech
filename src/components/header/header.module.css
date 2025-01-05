@@ -1,0 +1,31 @@
+.header__wrapper {
+    background-color: #fff;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 15px 0;
+}
+
+.header__logo {
+    width: 100%;
+    max-width: 45px;
+}
+
+.header__menu-list {
+    list-style-type: none;
+    padding-left: 0;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.breadcrumbs {
+    width: 100%;
+}

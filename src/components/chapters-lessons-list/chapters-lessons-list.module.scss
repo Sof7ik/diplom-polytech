@@ -1,0 +1,50 @@
+.chapters__list {
+	padding: 0;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+.chapter__item {
+	display: block;
+}
+
+.chapter__title-wrapper {
+	padding: 20px 30px;
+	background-color: #fff;
+	border-radius: 10px;
+	color: #000;
+}
+
+.chapter__title {
+	font-size: 2.8rem;
+	line-height: 1.5em;
+	font-weight: normal;
+	margin: 0;
+}
+
+.chapter__lessons-list {
+	list-style-type: none;
+	padding-left: 60px;
+
+	display: flex;
+	flex-flow: column nowrap;
+	gap: 10px;
+
+	margin: 20px 0;
+}
+
+.lesson__item {
+	padding: 20px 30px;
+	background-color: #fff;
+	border-radius: 10px;
+	color: #000;
+
+	display: block;
+}
+
+.lesson__title {
+	font-size: 2rem;
+	line-height: 1.5em;
+	font-weight: normal;
+	margin: 0;
+}
