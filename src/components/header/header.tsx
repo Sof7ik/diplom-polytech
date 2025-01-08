@@ -1,7 +1,9 @@
 import styles from "./header.module.css"
 import logo from "/src/assets/react.svg";
 import {Link} from "react-router-dom";
-import Breadcrumbs from "../breadcrumbs/Breadcrumbs.tsx";
+import {Avatar} from "antd";
+import { UserOutlined } from "@ant-design/icons";
+// import Breadcrumbs from "../breadcrumbs/Breadcrumbs.tsx";
 
 export default function Header() {
     return (
@@ -28,18 +30,22 @@ export default function Header() {
                             </nav>
 
                             <div className="header__personal">
-                                <Link to="/login/" className={styles['header__login']}> Войти </Link>
+                                <Link to="/login/" className={styles['header__login']}>
+                                    Войти
+                                </Link>
+
+                                <Avatar shape="square" size={30} icon={<UserOutlined />} />
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
 
-            <section className={styles.breadcrumbs}>
-                <div className="container">
-                    <Breadcrumbs />
-                </div>
-            </section>
+            {/*<section className={styles.breadcrumbs}>*/}
+            {/*    <div className="container">*/}
+            {/*        <Breadcrumbs />*/}
+            {/*    </div>*/}
+            {/*</section>*/}
         </>
     )
 }

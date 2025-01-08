@@ -1,7 +1,13 @@
+@import "../../styles/variables";
+
+$lessonAndChapterBorderColor: $gray-6;
+
 .chapters__list {
 	padding: 0;
 	display: flex;
 	flex-flow: column nowrap;
+
+	margin-top: 50px;
 }
 
 .chapter__item {
@@ -9,42 +15,59 @@
 }
 
 .chapter__title-wrapper {
-	padding: 20px 30px;
+	padding: 14px 20px 14px 30px;
+	border: 1px solid $lessonAndChapterBorderColor;
+	border-radius: 10px 10px 0 10px;
+
 	background-color: #fff;
-	border-radius: 10px;
 	color: #000;
 }
 
 .chapter__title {
-	font-size: 2.8rem;
+	font-size: 2rem;
 	line-height: 1.5em;
-	font-weight: normal;
+	font-weight: 600;
 	margin: 0;
 }
 
 .chapter__lessons-list {
 	list-style-type: none;
-	padding-left: 60px;
+	padding-left: 20px;
+	margin: 0 0 20px;
 
 	display: flex;
 	flex-flow: column nowrap;
-	gap: 10px;
-
-	margin: 20px 0;
 }
 
 .lesson__item {
 	padding: 20px 30px;
 	background-color: #fff;
-	border-radius: 10px;
-	color: #000;
+	//color: #000;
+
+	border: 1px solid $lessonAndChapterBorderColor;
+	border-bottom: none;
 
 	display: block;
 }
 
-.lesson__title {
-	font-size: 2rem;
-	line-height: 1.5em;
-	font-weight: normal;
-	margin: 0;
+.chapter__lessons-list .lesson__item:first-child {
+	border-top: none;
 }
+
+.chapter__lessons-list .lesson__item:last-child {
+	border-bottom: 1px solid $lessonAndChapterBorderColor;
+	border-radius: 0 0 10px 10px;
+}
+
+.lesson-item__link {
+	text-decoration: none;
+
+	font-size: 1.8rem;
+}
+
+//.lesson__title {
+//	font-size: 2rem;
+//	line-height: 1.5em;
+//	font-weight: normal;
+//	margin: 0;
+//}

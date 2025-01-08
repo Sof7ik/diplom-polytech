@@ -1,0 +1,29 @@
+@import "../styles/variables";
+
+.login-form__wrapper {
+	width: 100%;
+	max-width: 500px;
+	margin: 0 auto;
+
+	padding: 15px 15px 25px 15px;
+	border: 1px solid $gray-5;
+	border-radius: 10px;
+
+	.loginForm__title {
+		margin-top: 0;
+	}
+
+	form :last-child {
+		margin-bottom: 0;
+	}
+}
+
+.form-grid-2 {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 20px;
+}
+
+.loginForm__role-wrapper {
+	margin-bottom: 20px;
+}

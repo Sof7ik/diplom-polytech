@@ -1,4 +1,3 @@
-import './App.css'
 import Header from "./components/header/header.tsx";
 import Footer from "./components/footer/footer.tsx";
 import {Route, Routes} from "react-router-dom";
@@ -8,7 +7,7 @@ import AboutCoursePage from "./pages/cources/course-info/AboutCourse.tsx";
 import CourseLessonsPage from "./pages/cources/course-lessons/CourseLessonsPage.tsx";
 import CoursesPageWrapper from "./pages/cources/CoursesPageWrapper.tsx";
 import LogInPage from "./pages/login/LogInPage.tsx";
-import SignInPage from "./pages/sing-in/SignInPage.tsx";
+import RegisterPage from "./pages/register/RegisterPage.tsx";
 import AboutPage from "./pages/about/AboutPage.tsx";
 import CoursesListPage from "./pages/cources/courses-list/CoursesListPage.tsx";
 import LessonDetailPage from "./pages/cources/lesson-detail/LessonDetailPage.tsx";
@@ -23,7 +22,7 @@ function App() {
                     <Route path="/" element={<Mainpage />} />
 
                     <Route path="/login/" element={<LogInPage />} />
-                    <Route path="/sigin/" element={<SignInPage />} />
+                    <Route path="/register/" element={<RegisterPage />} />
 
                     <Route path="/about/" element={ <AboutPage /> } />
 
@@ -31,7 +30,7 @@ function App() {
                         <Route index element={<CoursesListPage />} />
 
                         <Route path=":code/" element={< CourseLessonsPage />} />
-                        <Route path=":code/:chapter_id/:lesson_id/" element={<LessonDetailPage />}/>
+                        <Route path=":code/:chapterId/:lessonId/" element={<LessonDetailPage />}/>
                         <Route path=":code/about/" element={<AboutCoursePage />} />
                     </Route>
                 </Routes>

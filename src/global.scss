@@ -1,0 +1,103 @@
+@import "styles/variables";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+	font-family: "Segoe UI", "Inter", "Roboto", "sans-serif";
+
+	/*color-scheme: light dark;*/
+	/*color: rgba(255, 255, 255, 0.87);*/
+	/*background-color: #242424;*/
+
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.6rem;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body * {
+	box-sizing: border-box;
+}
+
+body, html, #root {
+	width: 100%;
+	height: 100%;
+}
+
+img {
+	display: block;
+	user-select: none;
+}
+
+#root {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+header, main, footer {
+	width: 100%;
+}
+
+main {
+	flex-grow: 1;
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container-width);
+	margin: 0 auto;
+
+	--container-width: 1320px;
+
+	@media screen and (max-width: 1400px) {
+		--container-width: 1140px;
+	}
+	@media screen and (max-width: 1200px) {
+		--container-width: 960px;
+	}
+	@media screen and (max-width: 992px) {
+		--container-width: 720px;
+	}
+	@media screen and (max-width: 768px) {
+		--container-width: 540px;
+	}
+	@media screen and (max-width: 576px) {
+		--container-width: 100%;
+		padding: 0 15px;
+	}
+}
+
+ul {
+	margin-top: 0;
+}
+
+a {
+	color: $blue-color;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+	transition: all 0.3s;
+	border: 0;
+	padding: 0;
+	background: none;
+	user-select: text;
+}

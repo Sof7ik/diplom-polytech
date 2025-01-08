@@ -7,7 +7,7 @@ export const courses: ICourse[] = [
         id: 1,
         code: 'vichislitelnaya-geomeriya',
         description: 'Описание курса "Вычислительная геометрия"',
-        imageSrc: 'https://img.freepik.com/free-vector/abstract-concept-illustration_114360-1200.jpg?w=2000',
+        imageSrc: 'https://placehold.co/300x200',
     },
     {
         title: 'Компьютерная графика',
@@ -15,6 +15,6 @@ export const courses: ICourse[] = [
         id: 2,
         code: 'kompyuternaya-grafika',
         description: 'Описание курса "Компьютераня графика"',
-        imageSrc: 'https://img.freepik.com/free-vector/abstract-concept-illustration_114340-1200.jpg?w=2000',
+        imageSrc: 'https://placehold.co/300x600',
     },
 ]

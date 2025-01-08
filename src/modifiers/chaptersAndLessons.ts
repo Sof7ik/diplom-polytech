@@ -4,6 +4,7 @@ import {courses} from "../data/courses.ts";
 import {ICourseChapter} from "../models/course-chapter.interface.ts";
 
 export interface objectForTreeInterface {
+    course_title: string,
     course_id: number,
     course_code: string,
     tree: ICourseChapter[]
@@ -13,6 +14,7 @@ const chaptersAndLessons: objectForTreeInterface[] = [];
 
 courses.forEach(course => {
     const objectForTree: objectForTreeInterface = {
+        course_title: course.title,
         course_id: course.id,
         course_code: course.code,
         tree: []
