@@ -12,40 +12,43 @@ import AboutPage from "./pages/about/AboutPage.tsx";
 import CoursesListPage from "./pages/cources/courses-list/CoursesListPage.tsx";
 import LessonDetailPage from "./pages/cources/lesson-detail/LessonDetailPage.tsx";
 import PersonalPagesLayout from "./pages/personal/PersonalLayout.tsx";
-import PersonalMainpage from "./pages/personal/PersonalMainpage.tsx";
+import PersonalMainpage from "./pages/personal/mainpage/PersonalMainpage.tsx";
 import PersonalProfilePage from "./pages/personal/profile/PersonalProfilePage.tsx";
+import {AuthContextProvider} from "./components/AuthContextProvider.tsx";
 
 function App() {
     return (
         <>
-            <Header/>
+            <AuthContextProvider>
+                <Header/>
 
-            <main>
-                <Routes>
-                    <Route path="/" element={<Mainpage />} />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Mainpage />} />
 
-                    <Route path="/login/" element={<LogInPage />} />
-                    <Route path="/register/" element={<RegisterPage />} />
+                        <Route path="/login/" element={<LogInPage />} />
+                        <Route path="/register/" element={<RegisterPage />} />
 
-                    <Route path="/about/" element={ <AboutPage /> } />
+                        <Route path="/about/" element={ <AboutPage /> } />
 
-                    <Route path="/courses/" element={<CoursesPageWrapper />}>
-                        <Route index element={<CoursesListPage />} />
+                        <Route path="/courses/" element={<CoursesPageWrapper />}>
+                            <Route index element={<CoursesListPage />} />
 
-                        <Route path=":code/" element={< CourseLessonsPage />} />
-                        <Route path=":code/:chapterId/:lessonId/" element={<LessonDetailPage />}/>
-                        <Route path=":code/about/" element={<AboutCoursePage />} />
-                    </Route>
+                            <Route path=":code/" element={< CourseLessonsPage />} />
+                            <Route path=":code/:chapterId/:lessonId/" element={<LessonDetailPage />}/>
+                            <Route path=":code/about/" element={<AboutCoursePage />} />
+                        </Route>
 
-                    <Route path="/personal/" element={ <PersonalPagesLayout /> }>
-                        <Route index element={<PersonalMainpage />} />
+                        <Route path="/personal/" element={ <PersonalPagesLayout /> }>
+                            <Route index element={<PersonalMainpage />} />
 
-                        <Route path="profile" element={ <PersonalProfilePage /> } />
-                    </Route>
-                </Routes>
-            </main>
+                            <Route path="profile" element={ <PersonalProfilePage /> } />
+                        </Route>
+                    </Routes>
+                </main>
 
-            <Footer />
+                <Footer />
+            </AuthContextProvider>
         </>
     )
 }

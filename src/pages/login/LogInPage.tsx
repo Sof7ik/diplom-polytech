@@ -1,12 +1,14 @@
 import {Button, Divider, Form, Input, Typography} from "antd";
 import formStyles from "../../styles/auth-forms.module.scss";
 import pageStyles from "../../styles/login-pages.module.scss";
-import type { FormProps } from 'antd';
-import {EffectCallback, useContext, useEffect, useState} from "react";
-import {Link, NavigateFunction, useNavigate} from "react-router-dom";
+import { useState } from "react";
+import {Link, useNavigate} from "react-router-dom";
 import users from "../../data/users.json";
 import {IUser} from "../../models/users.interface.ts";
-import {AuthContext, IAuthContext, IUserContext} from "../../context/auth.context.ts";
+// import {AuthContext, IAuthContext, IUserContext} from "../../context/auth.context.ts";
+import {IUserContext, useUserContext} from "../../components/AuthContextProvider.tsx";
+import {getRandomNumber} from "../../modifiers/utils.ts";
+import { v4 as uuidv4 } from 'uuid';
 
 type FieldType = {
     email?: string;
@@ -23,11 +25,13 @@ export default function LogInPage() {
     const [authErrors, setAuthErrors] = useState<IAuthError[]>([]);
     const navigate = useNavigate();
 
-    const { authContextState, setAuthContextState } = useContext<IAuthContext | null>(AuthContext);
+    const { setUser } = useUserContext();
 
-    async function sendAuthForm(values:FormProps<FieldType>): Promise<void> {
+    async function sendAuthForm(values: FieldType): Promise<void> {
         setIsButtonLoading(true);
         console.log("Authing...", values);
+
+        const randomLoginTimeout: number = getRandomNumber(500, 2000);
 
         setTimeout(() => {
             const foundUser: IUser[] = users.filter(user => {
@@ -48,29 +52,20 @@ export default function LogInPage() {
 
             const loginUserObject: IUserContext = {
                 id: foundUser[0].id,
-                token: "dasdasdjngfjdgdf",
+                token: uuidv4(),
                 role: foundUser[0].role,
                 fio: foundUser[0].fio,
             }
 
-            localStorage.setItem("authContext", JSON.stringify(loginUserObject));
-
-            setAuthContextState(loginUserObject);
+            setUser(loginUserObject);
 
             setIsButtonLoading(false);
 
             return navigate("/courses/");
-        }, 2000);
+        }, randomLoginTimeout);
     }
 
     console.log("authErrors", authErrors);
-
-    useEffect(() => {
-        // пользователь авторизован
-        if (Object.keys(authContextState).length > 0) {
-           navigate("/personal/")
-        }
-    }, [])
 
     // пользователь не авторизован
     return (
