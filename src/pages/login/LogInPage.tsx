@@ -2,29 +2,77 @@ import {Button, Divider, Form, Input, Typography} from "antd";
 import formStyles from "../../styles/auth-forms.module.scss";
 import pageStyles from "../../styles/login-pages.module.scss";
 import type { FormProps } from 'antd';
-import {useState} from "react";
+import {EffectCallback, useContext, useEffect, useState} from "react";
 import {Link, NavigateFunction, useNavigate} from "react-router-dom";
+import users from "../../data/users.json";
+import {IUser} from "../../models/users.interface.ts";
+import {AuthContext, IAuthContext, IUserContext} from "../../context/auth.context.ts";
 
 type FieldType = {
     email?: string;
     password?: string;
 };
 
+interface IAuthError {
+    title: string,
+    message: string,
+}
+
 export default function LogInPage() {
     const [isButtonLoading, setIsButtonLoading] = useState(false);
-    const navigate: NavigateFunction = useNavigate();
+    const [authErrors, setAuthErrors] = useState<IAuthError[]>([]);
+    const navigate = useNavigate();
+
+    const { authContextState, setAuthContextState } = useContext<IAuthContext | null>(AuthContext);
 
     async function sendAuthForm(values:FormProps<FieldType>): Promise<void> {
         setIsButtonLoading(true);
-
         console.log("Authing...", values);
 
         setTimeout(() => {
+            const foundUser: IUser[] = users.filter(user => {
+                return user.email === values.email && user.password === values.password
+            });
+            console.log("найденный пользователь", foundUser);
+
+            if (!foundUser.length) {
+                setAuthErrors([
+                    ...authErrors,
+                    {
+                        title: "Пользователь не найден",
+                        message: "Проверьте правильность логина и пароля"
+                    }
+                ])
+                return;
+            }
+
+            const loginUserObject: IUserContext = {
+                id: foundUser[0].id,
+                token: "dasdasdjngfjdgdf",
+                role: foundUser[0].role,
+                fio: foundUser[0].fio,
+            }
+
+            localStorage.setItem("authContext", JSON.stringify(loginUserObject));
+
+            setAuthContextState(loginUserObject);
+
             setIsButtonLoading(false);
+
             return navigate("/courses/");
         }, 2000);
     }
 
+    console.log("authErrors", authErrors);
+
+    useEffect(() => {
+        // пользователь авторизован
+        if (Object.keys(authContextState).length > 0) {
+           navigate("/personal/")
+        }
+    }, [])
+
+    // пользователь не авторизован
     return (
         <section className={pageStyles["login-page__wrapper"]}>
             <div className="container">
@@ -43,7 +91,7 @@ export default function LogInPage() {
                                 message: "Введите email"
                             }]}
                         >
-                            <Input type="email"/>
+                            <Input type="email" autoComplete="email"/>
                         </Form.Item>
 
                         <Form.Item<FieldType>
@@ -51,7 +99,7 @@ export default function LogInPage() {
                             name="password"
                             rules={[{ required: true, message: 'Введите пароль' }]}
                         >
-                            <Input.Password />
+                            <Input.Password autoComplete="password" />
                         </Form.Item>
 
                         <Form.Item>
@@ -63,6 +111,17 @@ export default function LogInPage() {
                                 Войти
                             </Button>
                         </Form.Item>
+
+                        {
+                            authErrors.length > 0 &&
+                            <div className="auth-errors">
+                                {authErrors.map((errorObject: IAuthError, index: number) => {
+                                    return <Typography.Text key={`${errorObject.title}_${index}`} type="danger">
+                                        {errorObject.title}
+                                    </Typography.Text>
+                                })}
+                            </div>
+                        }
                     </Form>
 
                     <div style={{display: "none"}}>
