@@ -1,0 +1,43 @@
+@import "../../../styles/variables";
+
+.menu-tiles__wrapper {
+
+}
+
+.menu-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.menu-item {
+  max-width: 300px;
+  border-radius: 10px;
+  background-color: $gray-3;
+  border: $gray-6;
+
+  flex-grow: 1;
+  min-height: 200px;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+
+  &__icon {
+    margin: 0 auto 15px;
+    max-width: 70px;
+  }
+
+  &__text {
+    display: block;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
