@@ -11,6 +11,9 @@ import RegisterPage from "./pages/register/RegisterPage.tsx";
 import AboutPage from "./pages/about/AboutPage.tsx";
 import CoursesListPage from "./pages/cources/courses-list/CoursesListPage.tsx";
 import LessonDetailPage from "./pages/cources/lesson-detail/LessonDetailPage.tsx";
+import PersonalPagesLayout from "./pages/personal/PersonalLayout.tsx";
+import PersonalMainpage from "./pages/personal/PersonalMainpage.tsx";
+import PersonalProfilePage from "./pages/personal/profile/PersonalProfilePage.tsx";
 
 function App() {
     return (
@@ -32,6 +35,12 @@ function App() {
                         <Route path=":code/" element={< CourseLessonsPage />} />
                         <Route path=":code/:chapterId/:lessonId/" element={<LessonDetailPage />}/>
                         <Route path=":code/about/" element={<AboutCoursePage />} />
+                    </Route>
+
+                    <Route path="/personal/" element={ <PersonalPagesLayout /> }>
+                        <Route index element={<PersonalMainpage />} />
+
+                        <Route path="profile" element={ <PersonalProfilePage /> } />
                     </Route>
                 </Routes>
             </main>
