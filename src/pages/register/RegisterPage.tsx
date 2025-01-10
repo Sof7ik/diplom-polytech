@@ -4,8 +4,6 @@ import pageStyles from "../../styles/login-pages.module.scss";
 import {Link} from "react-router-dom";
 
 export default function RegisterPage() {
-    console.log(formStyles)
-
     return (
         <section className={pageStyles["login-page__wrapper"]}>
             <div className="container">

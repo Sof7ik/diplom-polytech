@@ -21,9 +21,9 @@ export default function Breadcrumbs() {
     const location = useLocation();
     const paths = location.pathname.split('/').filter(x => x); // Разделяем путь и убираем пустые элементы
 
-    console.log("location.pathname", location.pathname)
-
-    console.log(paths)
+    // console.log("location.pathname", location.pathname)
+    //
+    // console.log(paths)
 
     return (
         <nav aria-label="Breadcrumb" className={styles.breadcrumbs__wrapper}>
